@@ -31,8 +31,7 @@ function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
     console.log("Tie!");
     ties++;
-  }
-  else if (checkWinner(playerChoices) === "human") {
+  } else if (checkWinner(playerChoices) === "human") {
     console.log("Human won!");
     humanScore++;
   } else {
@@ -45,18 +44,18 @@ function playRound(humanChoice, computerChoice) {
 
 function checkWinner(playerChoices) {
   const values = Object.values(playerChoices);
-  if (values.includes("rock") && values.includes("scissor")) {
-    return Object.keys(playerChoices).find(
-      (key) => playerChoices[key] === "rock",
-    );
-  } else if (values.includes("rock") && values.includes("paper"))
-    return Object.keys(playerChoices).find(
-      (key) => playerChoices[key] === "paper",
-    );
-  else if (values.includes("scissor") && values.includes("paper"))
-    return Object.keys(playerChoices).find(
-      (key) => playerChoices[key] === "scissor",
-    );
+    if (values.includes("rock") && values.includes("scissor"))
+      return Object.keys(playerChoices).find(
+        (key) => playerChoices[key] === "rock",
+      );
+    else if (values.includes("rock") && values.includes("paper"))
+      return Object.keys(playerChoices).find(
+        (key) => playerChoices[key] === "paper",
+      );
+    else if (values.includes("scissor") && values.includes("paper"))
+      return Object.keys(playerChoices).find(
+        (key) => playerChoices[key] === "scissor",
+      );
 }
 
 function showScore() {
