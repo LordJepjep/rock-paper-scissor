@@ -9,10 +9,10 @@
 3. Show scores
 */
 
-
 const choices = ["rock", "paper", "scissor"];
 let humanScore = 0;
 let computerScore = 0;
+let ties = 0;
 
 function getComputerChoice() {
   return choices[Math.floor(Math.random() * 3)];
@@ -28,14 +28,19 @@ function getHumanChoice() {
 
 function playRound(humanChoice, computerChoice) {
   const playerChoices = { human: humanChoice, computer: computerChoice };
-  if (humanChoice === computerChoice) console.log()
-  if (checkWinner(playerChoices) === "human") {
+  if (humanChoice === computerChoice) {
+    console.log("Tie!");
+    ties++;
+  }
+  else if (checkWinner(playerChoices) === "human") {
     console.log("Human won!");
     humanScore++;
   } else {
     console.log("Computer won!");
     computerScore++;
   }
+
+  showScore();
 }
 
 function checkWinner(playerChoices) {
@@ -54,17 +59,21 @@ function checkWinner(playerChoices) {
     );
 }
 
-function showScore(){
-    console.log("")
+function showScore() {
+  console.log(
+    `Human: ${humanScore} | Computer: ${computerScore} | Tie: ${ties}`,
+  );
 }
 
-function startGame() {
-  const computerChoice = getComputerChoice();
-  const humanChoice = getHumanChoice();
-  console.log(`Computer: ${computerChoice}`);
-  console.log(`You: ${humanChoice}`);
+function playGame() {
+  for (let i = 0; i < 5; i++) {
+    const computerChoice = getComputerChoice();
+    const humanChoice = getHumanChoice();
+    console.log(`Computer: ${computerChoice}`);
+    console.log(`You: ${humanChoice}`);
 
-  playRound(humanChoice, computerChoice);
+    playRound(humanChoice, computerChoice);
+  }
 }
 
-startGame();
+playGame();
