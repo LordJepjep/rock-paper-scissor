@@ -75,4 +75,4 @@ function playGame() {
   }
 }
 
-console.log(playGame());
+playGame();
