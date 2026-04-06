@@ -13,6 +13,7 @@ const choices = ["rock", "paper", "scissor"];
 let humanScore = 0;
 let computerScore = 0;
 let ties = 0;
+let humanChoice;
 
 function getComputerChoice() {
   return choices[Math.floor(Math.random() * 3)];
@@ -44,18 +45,18 @@ function playRound(humanChoice, computerChoice) {
 
 function checkWinner(playerChoices) {
   const values = Object.values(playerChoices);
-    if (values.includes("rock") && values.includes("scissor"))
-      return Object.keys(playerChoices).find(
-        (key) => playerChoices[key] === "rock",
-      );
-    else if (values.includes("rock") && values.includes("paper"))
-      return Object.keys(playerChoices).find(
-        (key) => playerChoices[key] === "paper",
-      );
-    else if (values.includes("scissor") && values.includes("paper"))
-      return Object.keys(playerChoices).find(
-        (key) => playerChoices[key] === "scissor",
-      );
+  if (values.includes("rock") && values.includes("scissor"))
+    return Object.keys(playerChoices).find(
+      (key) => playerChoices[key] === "rock",
+    );
+  else if (values.includes("rock") && values.includes("paper"))
+    return Object.keys(playerChoices).find(
+      (key) => playerChoices[key] === "paper",
+    );
+  else if (values.includes("scissor") && values.includes("paper"))
+    return Object.keys(playerChoices).find(
+      (key) => playerChoices[key] === "scissor",
+    );
 }
 
 function showScore() {
@@ -65,14 +66,20 @@ function showScore() {
 }
 
 function playGame() {
-  // for (let i = 0; i < 5; i++) {
-  //   const computerChoice = getComputerChoice();
-  //   const humanChoice = getHumanChoice();
-  //   console.log(`Computer: ${computerChoice}`);
-  //   console.log(`You: ${humanChoice}`);
-
-  //   playRound(humanChoice, computerChoice);
-  // }
+    const computerChoice = getComputerChoice();
+    console.log(`Computer: ${computerChoice}`);
+    console.log(`You: ${humanChoice}`);
+    playRound(humanChoice, computerChoice);
 }
 
-playGame();
+// Select player choice when button is clicked
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    humanChoice = button.id.toString();
+    alert(humanChoice);
+    playGame();
+  });
+});
+
+
