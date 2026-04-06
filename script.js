@@ -65,14 +65,14 @@ function showScore() {
 }
 
 function playGame() {
-  for (let i = 0; i < 5; i++) {
-    const computerChoice = getComputerChoice();
-    const humanChoice = getHumanChoice();
-    console.log(`Computer: ${computerChoice}`);
-    console.log(`You: ${humanChoice}`);
+  // for (let i = 0; i < 5; i++) {
+  //   const computerChoice = getComputerChoice();
+  //   const humanChoice = getHumanChoice();
+  //   console.log(`Computer: ${computerChoice}`);
+  //   console.log(`You: ${humanChoice}`);
 
-    playRound(humanChoice, computerChoice);
-  }
+  //   playRound(humanChoice, computerChoice);
+  // }
 }
 
 playGame();
