@@ -13,7 +13,7 @@ const choices = ["rock", "paper", "scissor"];
 let humanScore = 0;
 let computerScore = 0;
 let ties = 0;
-let humanChoice;
+let humanChoice, computerChoice;
 
 function getComputerChoice() {
   return choices[Math.floor(Math.random() * 3)];
@@ -29,21 +29,23 @@ function getHumanChoice() {
 
 function playRound(humanChoice, computerChoice) {
   const playerChoices = { human: humanChoice, computer: computerChoice };
+  const roundWinner = checkRoundWinner(playerChoices);
   if (humanChoice === computerChoice) {
     console.log("Tie!");
     ties++;
-  } else if (checkWinner(playerChoices) === "human") {
+  } else if (roundWinner === "human") {
     console.log("Human won!");
     humanScore++;
   } else {
     console.log("Computer won!");
     computerScore++;
   }
-
-  showScore();
+  const gameWinner = checkGameWinner();
+  
+  showScore(gameWinner);
 }
 
-function checkWinner(playerChoices) {
+function checkRoundWinner(playerChoices) {
   const values = Object.values(playerChoices);
   if (values.includes("rock") && values.includes("scissor"))
     return Object.keys(playerChoices).find(
@@ -59,27 +61,54 @@ function checkWinner(playerChoices) {
     );
 }
 
-function showScore() {
+function checkGameWinner(){
+  if(humanScore === 5) return "human";
+  if(computerScore === 5) return "computer";
+  return;
+}
+
+function showScore(gameWinner) {
   console.log(
     `Human: ${humanScore} | Computer: ${computerScore} | Tie: ${ties}`,
   );
+  const gameWinnerDisplay = document.querySelector(".result");
+  if(gameWinner) gameWinnerDisplay.textContent = "The Winner is " + gameWinner;
+
+
+  const playerChoiceDiv = document.querySelector(".player-choice");
+  const computerChoiceDiv = document.querySelector(".computer-choice");
+  playerChoiceDiv.textContent = "";
+  computerChoiceDiv.textContent = "";  
+  playerChoiceDiv.textContent = "You: " + humanChoice;
+  computerChoiceDiv.textContent = "Computer: " + computerChoice;
+
+  const humanScoreDisplay = document.querySelector(".player-score");
+  const computerScoreDisplay = document.querySelector(".computer-score");
+  const tieScoreDisplay = document.querySelector(".tie-score");
+  humanScoreDisplay.textContent = "Your Score: " + humanScore;
+  computerScoreDisplay.textContent = "Computer Score: " + computerScore;
+  tieScoreDisplay.textContent = "Ties: " + ties;
+}
+
+function resetGame(){
+  humanScore = 0;
+  computerScore = 0;
+  ties = 0;
 }
 
 function playGame() {
-    const computerChoice = getComputerChoice();
-    console.log(`Computer: ${computerChoice}`);
-    console.log(`You: ${humanChoice}`);
-    playRound(humanChoice, computerChoice);
+  computerChoice = getComputerChoice();
+  console.log(`Computer: ${computerChoice}`);
+  console.log(`You: ${humanChoice}`);
+  playRound(humanChoice, computerChoice);
 }
 
 // Select player choice when button is clicked
-const buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll(".button");
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     humanChoice = button.id.toString();
-    alert(humanChoice);
+    //alert(humanChoice);
     playGame();
   });
 });
-
-
