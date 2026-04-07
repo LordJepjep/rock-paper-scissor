@@ -7,6 +7,10 @@
     - if values are scissor and paper, get player with choice of scissor
     - add score to winner
 3. Show scores
+4. If a player reaches 5 points:
+    - disable buttons
+    - enable reset button
+    - display the winner
 */
 
 const choices = ["rock", "paper", "scissor"];
@@ -41,7 +45,10 @@ function playRound(humanChoice, computerChoice) {
     computerScore++;
   }
   const gameWinner = checkGameWinner();
-  
+  if (gameWinner) {
+    toggleChoiceButtons();
+  }
+
   showScore(gameWinner);
 }
 
@@ -61,9 +68,9 @@ function checkRoundWinner(playerChoices) {
     );
 }
 
-function checkGameWinner(){
-  if(humanScore === 5) return "human";
-  if(computerScore === 5) return "computer";
+function checkGameWinner() {
+  if (humanScore === 5) return "human";
+  if (computerScore === 5) return "computer";
   return;
 }
 
@@ -72,13 +79,13 @@ function showScore(gameWinner) {
     `Human: ${humanScore} | Computer: ${computerScore} | Tie: ${ties}`,
   );
   const gameWinnerDisplay = document.querySelector(".result");
-  if(gameWinner) gameWinnerDisplay.textContent = "The Winner is " + gameWinner;
-
+  if (gameWinner) gameWinnerDisplay.textContent = "The Winner is " + gameWinner;
+  else gameWinnerDisplay.textContent = "";
 
   const playerChoiceDiv = document.querySelector(".player-choice");
   const computerChoiceDiv = document.querySelector(".computer-choice");
   playerChoiceDiv.textContent = "";
-  computerChoiceDiv.textContent = "";  
+  computerChoiceDiv.textContent = "";
   playerChoiceDiv.textContent = "You: " + humanChoice;
   computerChoiceDiv.textContent = "Computer: " + computerChoice;
 
@@ -90,10 +97,20 @@ function showScore(gameWinner) {
   tieScoreDisplay.textContent = "Ties: " + ties;
 }
 
-function resetGame(){
+function resetGame() {
   humanScore = 0;
   computerScore = 0;
   ties = 0;
+
+  toggleChoiceButtons();
+  showScore();
+}
+
+function toggleChoiceButtons() {
+  const buttons = document.querySelectorAll(".button");
+  buttons.forEach((button) => {
+    button.disabled = !button.disabled;
+  });
 }
 
 function playGame() {
@@ -111,4 +128,9 @@ buttons.forEach((button) => {
     //alert(humanChoice);
     playGame();
   });
+});
+
+const resetButton = document.querySelector(".reset-button");
+resetButton.addEventListener("click", () => {
+  resetGame();
 });
