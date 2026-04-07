@@ -82,19 +82,23 @@ function showScore(gameWinner) {
   if (gameWinner) gameWinnerDisplay.textContent = "The Winner is " + gameWinner;
   else gameWinnerDisplay.textContent = "";
 
-  const playerChoiceDiv = document.querySelector(".player-choice");
-  const computerChoiceDiv = document.querySelector(".computer-choice");
+  const playerChoiceDiv = document.querySelector(
+    ".player-result .selected-choice",
+  );
+  const computerChoiceDiv = document.querySelector(
+    ".computer-result .selected-choice",
+  );
   playerChoiceDiv.textContent = "";
   computerChoiceDiv.textContent = "";
-  playerChoiceDiv.textContent = "You: " + humanChoice;
-  computerChoiceDiv.textContent = "Computer: " + computerChoice;
+  playerChoiceDiv.textContent = humanChoice;
+  computerChoiceDiv.textContent = computerChoice;
 
-  const humanScoreDisplay = document.querySelector(".player-score");
-  const computerScoreDisplay = document.querySelector(".computer-score");
-  const tieScoreDisplay = document.querySelector(".tie-score");
-  humanScoreDisplay.textContent = "Your Score: " + humanScore;
-  computerScoreDisplay.textContent = "Computer Score: " + computerScore;
-  tieScoreDisplay.textContent = "Ties: " + ties;
+  const humanScoreDisplay = document.querySelector(".player-score .score");
+  const computerScoreDisplay = document.querySelector(".computer-score .score");
+  const tieScoreDisplay = document.querySelector(".tie-score .score");
+  humanScoreDisplay.textContent = humanScore;
+  computerScoreDisplay.textContent = computerScore;
+  tieScoreDisplay.textContent = ties;
 }
 
 function resetGame() {
@@ -109,7 +113,7 @@ function resetGame() {
 function toggleChoiceButtons() {
   const buttons = document.querySelectorAll(".button");
   buttons.forEach((button) => {
-    button.disabled = !button.disabled;
+    button.classList.toggle("disabled-button");
   });
 }
 
@@ -124,6 +128,10 @@ function playGame() {
 const buttons = document.querySelectorAll(".button");
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
+    if (button.classList.contains("disabled-button")) {
+      e.preventDefault();
+      return; // Exit the function early
+    }
     humanChoice = button.id.toString();
     //alert(humanChoice);
     playGame();

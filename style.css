@@ -1,0 +1,81 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  padding: 1rem;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100vw;
+  /* border: 1px solid red; */
+  gap: 2rem;
+}
+
+.score-board {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  height: auto;
+  /* border: 1px solid rgb(47, 0, 255); */
+}
+
+.score-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  /* border: 1px solid rgb(255, 132, 0); */
+}
+
+.result-container .choices {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.selected-choice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid rgb(220, 20, 235); */
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.button {
+  text-decoration: none;
+  border: 1px solid black;
+  font-size: 2rem;
+  padding: 1rem;
+}
+
+.disabled-button {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: default;
+}

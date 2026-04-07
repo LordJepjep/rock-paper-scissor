@@ -4,32 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissor</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="main">
+      <h1>Rock, Paper, Scissor!</h1>
+      <div class="score-board">
+        <div class="score-container player-score">
+          <p class="name">You</p>
+          <p class="score">0</p>
+        </div>
+        <div class="score-container computer-score">
+          <p class="name">Computer</p>
+          <p class="score">0</p>
+        </div>
+        <div class="score-container tie-score">
+          <p class="name">Ties</p>
+          <p class="score">0</p>
+        </div>
+      </div>
       <div class="result-container">
         <div class="result"></div>
         <div class="choices">
-            <div class="player-choice">
-                You:
-            </div>
-            <div class="computer-choice">
-                Computer:
-            </div>
-        </div>
-        <div class="score-board">
-            <div class="player-score">Your Score: 0</div>
-            <div class="computer-score">Computer Score: 0</div>
-            <div class="tie-score">Ties: 0</div>
+          <div class="player-result">
+            <p>You</p>
+            <p class="selected-choice"></p>
+          </div>
+          <div class="computer-result">
+            <p>Computer</p>
+            <p class="selected-choice "></p>
+          </div>
         </div>
       </div>
       <div class="buttons">
-        <button class="button" id="rock">Rock</button>
-        <button class="button" id="paper">Paper</button>
-        <button class="button" id="scissor">Scissor</button>
-        <button class="reset-button">Reset</button>
+        <a class="button" id="rock">🪨</a>
+        <a class="button" id="paper">📝</a>
+        <a class="button" id="scissor">✂️</a>
       </div>
+      <a class="reset-button">Reset</button>
     </div>
     <script src="script.js" defer></script>
   </body>
