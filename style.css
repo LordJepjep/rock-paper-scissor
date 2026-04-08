@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -22,10 +23,11 @@ h1 {
 .score-board {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  width: 50%;
+  width: 60%;
   height: auto;
+  margin: 0 auto;
   /* border: 1px solid rgb(47, 0, 255); */
 }
 
@@ -34,6 +36,11 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.score-container .score {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .result-container {
@@ -50,15 +57,27 @@ h1 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 50%;
+  width: 25%;
 }
 
-.selected-choice {
+.player-result,
+.computer-result {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid rgb(220, 20, 235); */
+  border: 1px solid black;
+  border-radius: 5%;
+  min-width: 100px;
+  height: auto;
+}
+
+.selected-choice {
+  font-size: 5rem;
+}
+
+.result {
+  padding: 50px 0;
 }
 
 .buttons {
@@ -67,9 +86,11 @@ h1 {
   gap: 1rem;
 }
 
-.button {
+.button,
+.reset-button {
   text-decoration: none;
   border: 1px solid black;
+  border-radius: 5%;
   font-size: 2rem;
   padding: 1rem;
 }

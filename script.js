@@ -90,8 +90,8 @@ function showScore(gameWinner) {
   );
   playerChoiceDiv.textContent = "";
   computerChoiceDiv.textContent = "";
-  playerChoiceDiv.textContent = humanChoice;
-  computerChoiceDiv.textContent = computerChoice;
+  playerChoiceDiv.textContent = getChoiceEmoji(humanChoice);
+  computerChoiceDiv.textContent = getChoiceEmoji(computerChoice);
 
   const humanScoreDisplay = document.querySelector(".player-score .score");
   const computerScoreDisplay = document.querySelector(".computer-score .score");
@@ -99,6 +99,22 @@ function showScore(gameWinner) {
   humanScoreDisplay.textContent = humanScore;
   computerScoreDisplay.textContent = computerScore;
   tieScoreDisplay.textContent = ties;
+}
+
+function getChoiceEmoji(choice) {
+  switch (choice) {
+    case "rock":
+      return "🪨";
+    case "paper":
+      return "📝";
+    case "scissor":
+      return "✂️";
+      break;
+
+    default:
+      return;
+      break;
+  }
 }
 
 function resetGame() {
